@@ -1,9 +1,9 @@
-var gulp        = require('gulp')
-  , plugins     = require('gulp-load-plugins')()
-  , utils       = plugins.loadUtils(['log', 'colors'])
-  , paths       = require('./gulp.config.json')
-  , browserSync = require('browser-sync')
-  , reload      = browserSync.reload;
+var gulp        = require('gulp');
+var plugins     = require('gulp-load-plugins')();
+var utils       = plugins.loadUtils(['log', 'colors']);
+var paths       = require('./gulp.config.json');
+var browserSync = require('browser-sync');
+var reload      = browserSync.reload;
 
 // gulp.task('vendorjs', function() {
 //   utils.log(utils.colors.black.bgGreen('Vendor JavaScript'));
@@ -23,7 +23,7 @@ var gulp        = require('gulp')
 //     .pipe(reload({stream: true}));
 // });
 
-gulp.task('root_frontend', function() {
+gulp.task('root_frontend', function () {
   utils.log(utils.colors.black.bgGreen('Root - Front-End'));
 
   gulp.src(paths.src.root_frontend)
@@ -32,14 +32,14 @@ gulp.task('root_frontend', function() {
     .pipe(reload({stream: true}));
 });
 
-gulp.task('package_json', function() {
+gulp.task('package_json', function () {
   utils.log(utils.colors.black.bgGreen('package.json'));
 
   gulp.src(paths.src.package_json)
     .pipe(gulp.dest(paths.build.package_json));
 });
 
-gulp.task('b-s', function() {
+gulp.task('b-s', function () {
   browserSync({
     server: {
       baseDir: './build/frontend/'
