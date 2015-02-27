@@ -1,0 +1,17 @@
+{
+  "src": {
+    "vendorjs": [
+      "bower_components/angular/angular.min.js",
+      "bower_components/angular-route/angular-route.min.js",
+      "bower_components/jquery/dist/jquery.min.js"
+    ],
+    "root_frontend": "src/frontend/index.html",
+    "package_json": "package.json"
+  },
+
+  "build": {
+    "vendorjs": "build/frontend/scripts/vendor/",
+    "root_frontend": "build/frontend/",
+    "package_json": "build/"
+  }
+}
