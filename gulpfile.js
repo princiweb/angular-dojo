@@ -5,14 +5,14 @@ var paths       = require('./gulp.config.json');
 var browserSync = require('browser-sync');
 var reload      = browserSync.reload;
 
-// gulp.task('vendorjs', function() {
-//   utils.log(utils.colors.black.bgGreen('Vendor JavaScript'));
+gulp.task('vendorjs', function () {
+  utils.log(utils.colors.black.bgGreen('Vendor JavaScript'));
 
-//   gulp.src(paths.src.vendorjs)
-//     .pipe(plugins.changed(paths.build.vendorjs))
-//     .pipe(gulp.dest(paths.build.vendorjs))
-//     .pipe(reload({stream: true}));
-// });
+  gulp.src(paths.src.vendorjs)
+    .pipe(plugins.changed(paths.build.vendorjs))
+    .pipe(gulp.dest(paths.build.vendorjs))
+    .pipe(reload({stream: true}));
+});
 
 // gulp.task('app', function() {
 //   utils.log(utils.colors.black.bgGreen('App'));
@@ -48,6 +48,7 @@ gulp.task('b-s', function () {
   });
 
   gulp.watch(paths.src.root_frontend, ['root_frontend']);
+  gulp.watch(paths.src.vendorjs, ['vendorjs']);
 });
 
-gulp.task('default', ['root_frontend', 'package_json', 'b-s']);
+gulp.task('default', ['root_frontend', 'package_json', 'vendorjs', 'b-s']);

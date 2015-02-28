@@ -1,0 +1,9 @@
+<section data-ng-controller="Filmes">
+  <h1>Bem-vindo ao mundo dos filmes populares</h1>
+
+  <ul>
+    <li data-ng-repeat="filme in filmesPopulares">
+      <a data-ng-href="filmes/{{ filme.id }}">{{ filme.original_title }}</a>
+    </li>
+  </ul>
+</section>
