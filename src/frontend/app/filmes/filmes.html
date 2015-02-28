@@ -1,0 +1,19 @@
+<section data-ng-controller="Filmes">
+  <h1>Bem-vindo ao mundo dos filmes populares</h1>
+
+  <dj-movion></dj-movion>
+
+  <form name="form">
+    <fieldset>
+      <legend>Busca de filme</legend>
+        <label for="busca">Busca:</label>
+        <input type="text" name="busca" id="busca" data-ng-model="busca">
+    </fieldset>
+  </form>
+
+  <ul>
+    <li data-ng-repeat="filme in filmesPopulares | filter:busca">
+      <a data-ng-href="/#/filmes/{{ filme.id }}">{{ filme.original_title }}</a>
+    </li>
+  </ul>
+</section>

@@ -1,0 +1,48 @@
+<div data-ng-controller="Teste">
+  <p>{{ atualiza }}</p>
+  <p>{{ ::naoAtualiza }}</p>
+
+  <form name="form" data-ng-submit="validar(form.$valid)" novalidate>
+    <fieldset>
+      <legend>Mágica</legend>
+
+      <label>Esse atualiza:</label>
+      <input type="text" data-ng-model="atualiza" />
+
+      <label>Esse não atualiza:</label>
+      <input type="text" data-ng-model="naoAtualiza" />
+
+      <label>E-mail:</label>
+      <input 
+        type="email" 
+        name="email"
+        required
+        data-ng-model="email" 
+        data-ng-model-options="{ updateOn:'blur' }" />
+      <span 
+        data-ng-messages="form.email.$error"
+        data-ng-if="form.email.$dirty">
+        <span data-ng-message="required">
+          E-mail obrigatório.
+        </span>
+        <span data-ng-message="email">
+          E-mail inválido.
+        </span>
+      </span>
+
+      <input 
+        name="telefone"
+        type="tel"
+        required
+        placeholder="(19) 9999-9999"
+        data-ng-model="telefone"
+        data-mask="(99) 9999-9999">
+
+      <span data-ng-if="form.telefone.$error.required && form.telefone.$dirty" >
+        Telefone obrigatório
+      </span>
+
+      <button>Vai!</button>
+    </fieldset>
+  </form>
+</div>

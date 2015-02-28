@@ -1,51 +1,14 @@
 <!DOCTYPE html>
 <html data-ng-app="app">
   <head>
-    <base href="/" />
-    <title>AngularJS - Dojo</title>
+    <!-- <base href="/" /> -->
+    <title data-ng-bind="title"></title>
   </head>
   <body>
     <ul>
-      <li><a href="/">Inicial</a></li>
-      <li><a href="/filmes">Filmes</a></li>
+      <li><a href="/#/">Inicial</a></li>
+      <li><a href="/#/filmes">Filmes</a></li>
     </ul>
-
-    <div data-ng-controller="Teste">
-      <p>{{ atualiza }}</p>
-      <p>{{ ::naoAtualiza }}</p>
-
-      <form name="form" data-ng-submit="validar(form.$valid)" novalidate>
-        <fieldset>
-          <legend>Mágica</legend>
-
-          <label>Esse atualiza:</label>
-          <input type="text" data-ng-model="atualiza" />
-
-          <label>Esse não atualiza:</label>
-          <input type="text" data-ng-model="naoAtualiza" />
-
-          <label>E-mail:</label>
-          <input 
-            type="email" 
-            name="email"
-            data-ng-model="email" 
-            required
-            data-ng-model-options="{ updateOn:'blur' }" />
-          <span 
-            data-ng-messages="form.email.$error"
-            data-ng-if="form.email.$dirty">
-            <span data-ng-message="required">
-              E-mail obrigatório.
-            </span>
-            <span data-ng-message="email">
-              E-mail inválido.
-            </span>
-          </span>
-
-          <button>Vai!</button>
-        </fieldset>
-      </form>
-    </div>
 
     <section data-ng-view>      
     </section>
@@ -54,42 +17,23 @@
     <script src="scripts/vendor/angular.min.js"></script>
     <script src="scripts/vendor/angular-route.min.js"></script>
     <script src="scripts/vendor/angular-messages.min.js"></script>
+    <script src="scripts/vendor/jquery.mask.min.js"></script>
 
-    <script>
-      var app = angular.module('app', [
-        'ngRoute',
-        'ngMessages'
-      ]);
+    <script src="app/app.module.js"></script>
 
-      app.controller('Teste', Teste);
+    <script src="app/filmes/filmes.module.js"></script>
+    <script src="app/filmes/filmes.data.js"></script>
+    <script src="app/filmes/filmes.js"></script>
 
-      function Teste($scope) {
-        $scope.validar = function(ehValido) {
-          console.log(ehValido);
-        };
-        $scope.atualiza = ':)';
-        $scope.naoAtualiza = ':)';
-      }
+    <script src="app/teste/teste.module.js"></script>
+    <script src="app/teste/teste.js"></script>
 
-      app.controller('Filmes', Filmes);
-
-      function Filmes($scope, $http){
-        $http.get('http://api.themoviedb.org/3/movie/popular?api_key=daacda49466e41790becc80ee1658c01')
-          .success(function(result) {
-            $scope.filmesPopulares = result.results;
-          }).error(function(error) {
-            console.log('error: ' + error);
-          });
-      }
-
-      app.config(function($routeProvider, $locationProvider) {
-        $locationProvider.html5Mode(true);
-
-        $routeProvider
-          .when('/filmes', {
-            templateUrl : 'filmes.html'
-          })
-      });
-    </script>
+    <script src="app/widgets/widgets.module.js"></script>
+    <script src="app/widgets/djMovion.js"></script>
+    <script src="app/widgets/mask.js"></script>
+    
+    <script src="app/routes/routes.module.js"></script>
+    <script src="app/routes/routes.js"></script>
+    
   </body>
 </html>

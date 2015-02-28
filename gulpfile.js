@@ -14,14 +14,14 @@ gulp.task('vendorjs', function () {
     .pipe(reload({stream: true}));
 });
 
-// gulp.task('app', function() {
-//   utils.log(utils.colors.black.bgGreen('App'));
+gulp.task('app', function() {
+  utils.log(utils.colors.black.bgGreen('App'));
 
-//   gulp.src(paths.src.app)
-//     .pipe(plugins.changed(paths.build.app))
-//     .pipe(gulp.dest(paths.build.app))
-//     .pipe(reload({stream: true}));
-// });
+  gulp.src(paths.src.app)
+    .pipe(plugins.changed(paths.build.app))
+    .pipe(gulp.dest(paths.build.app))
+    .pipe(reload({stream: true}));
+});
 
 gulp.task('root_frontend', function () {
   utils.log(utils.colors.black.bgGreen('Root - Front-End'));
@@ -48,7 +48,8 @@ gulp.task('b-s', function () {
   });
 
   gulp.watch(paths.src.root_frontend, ['root_frontend']);
+  gulp.watch(paths.src.app, ['app']);
   gulp.watch(paths.src.vendorjs, ['vendorjs']);
 });
 
-gulp.task('default', ['root_frontend', 'package_json', 'vendorjs', 'b-s']);
+gulp.task('default', ['root_frontend', 'package_json', 'vendorjs', 'app', 'b-s']);
